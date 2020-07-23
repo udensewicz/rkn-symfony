@@ -1,0 +1,70 @@
+{% import _self as formMacros %}
+{% extends 'base.html.twig' %}
+
+{% macro printVotingRow(voting) %}
+    <div style="padding-bottom: 10px" class="js-voting-item">
+        {{ form_errors(voting) }}
+        <a href="#" class="js-delete-voting pull-right">
+            <i class="fa fa-times-circle mr-3"></i>
+        </a>
+        {{ form_label(voting.subject) }}
+        {{ form_widget(voting.subject) }}
+    </div>
+{% endmacro %}
+
+{% block title %}Nowe głosowanie :: {{ kn.name }} :: Rada Kół Naukowych PW{% endblock %}
+
+{% block body %}
+    <div class="row justify-content-center">
+        <div class="col-10">
+            <h4>{{ title }}</h4>
+            Instrukcja: <br/>
+            Jeżeli głosowanie jest zwykłym głosowaniem za/przeciw, wprowadzić tytuł głosowania i zapisać. Pozostałe pola zignorować.
+            <br/><br/>
+            Jeżeli głosowanie składa się z kilku powiązanych głosowań składowych (np. kilku kandydatów na jedną funkcję),
+            jako tytuł głosowania wprowadzić ogólny opis przedmiotu głosowania, a następnie za pomocą przycisku dodać
+            pożądaną liczbę głosowań składowych oraz określić liczbę miejsc do obsadzenia (jest ona równa liczbie
+            kandydatur, jakie można poprzeć przy głosowaniu).
+            <br/><br/>
+            {{ form_start(form) }}
+            <div style="padding-bottom: 20px">
+                {{ form_row(form.subject) }}
+            </div>
+            <div style="padding-bottom: 20px">
+                {{ form_row(form.maxVotesFor) }}
+            </div>
+            <div class="js-votings-wrapper"
+                 data-prototype="{{ formMacros.printVotingRow(form.votings.vars.prototype)|e('html_attr') }}"
+                 data-index="{{ form.votings|length }}"
+            >
+                {% for voting in form.votings %}
+                    {{ formMacros.printVotingRow(voting) }}
+                {% endfor %}
+                <a class="btn btn-primary js-add-voting" style="color: white; padding-top: 10px">Dodaj głosowanie składowe</a>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block additionaljs %}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var $wrapper = $('.js-votings-wrapper');
+            $wrapper.on('click', '.js-add-voting', function(e) {
+                e.preventDefault();
+                var prototype = $wrapper.data('prototype');
+                var index = $wrapper.data('index');
+                var newForm = prototype.replace(/__name__/g, index);
+                $wrapper.data('index', index + 1);
+                $(this).before(newForm);
+            });
+
+            $wrapper.on('click', '.js-delete-voting', function(e) {
+                e.preventDefault();
+                $(this).closest('.js-voting-item')
+                    .remove();
+            });
+        });
+    </script>
+{% endblock %}

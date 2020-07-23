@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Głosowanie na projekty :: Rada Kół Naukowych PW{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h4>{{ meeting.title }}</h4>
+        <p>Głosowanie na projekty zgłoszone do tej puli</p>
+        <div>Głosowanie juz sie zakończyło.
+            <table class="display table table-bordered">
+                <tbody>
+                <tr>
+                    <td>Uprawnionych do głosowania</td>
+                    <td>{{ attendance|length }}</td>
+                </tr>
+                <tr>
+                    <td>Oddanych głosów</td>
+                    <td>{{ voters|length }}</td>
+                </tr>
+                <tr>
+                    <td>Głosów nieważnych</td>
+                    <td>{{ invalid|length }}</td>
+                </tr>
+                <tr>
+                    <td>Głosów ważnych</td>
+                    <td>{{ valid|length }}</td>
+                </tr>
+                <tr>
+                    <td>Głosów skrajnie odcinanych</td>
+                    <td>{{ cut }}</td>
+                </tr>
+                </tbody>
+            </table>
+            <table class="display table table-hover table-bordered">
+                <thead>
+                <tr class="bg-primary">
+                    <th>Lp.</th>
+                    <th>Nazwa projektu</th>
+                    <th>Jednostka</th>
+                    <th>Punkty</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for project in results %}
+                    {% if project.status in ['RKN_FORMAL_OK','RKN_PRESENTATION_OK','WAITING_RKN_GET_CASH','WAITING_RKN_DONT_GET_CASH'] %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ project.name }}</td>
+                        <td>{{ project.knShort }}</td>
+                        <td>{{ project.score }}</td>
+                    </tr>
+                    {% endif %}
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

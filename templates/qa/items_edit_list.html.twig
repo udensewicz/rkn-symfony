@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lista pytań i odpowiedzi :: Rada Kół Naukowych PW{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="btn-group d-flex" role="group" aria-label="...">
+            <a role="button" class="btn btn-outline-primary w-100" href="/qa/categories">
+                <i class="fa fa-folder fa-2x" style=" vertical-align: middle;"></i>
+                <span class="ml-2"><b>Kategorie</b></span>
+            </a>
+            <a role="button" class="btn btn-outline-primary w-100" href="/qa/items">
+                <i class="fa fa-question fa-2x" style=" vertical-align: middle;"></i>
+                <span class="ml-2"><b>Pytania</b></span>
+            </a>
+        </div>
+        <br><br>
+        <a href="/qa/items/new" class="btn btn-primary btn-lg">Nowe pytanie</a>
+        <br><br>
+        {% if items %}
+            <br>
+            <table id="idatatable" datatable="" width="100%" class="display table table-hover table-bordered">
+                <thead>
+                <tr  class="bg-primary">
+                    <th>Pytanie</th>
+                    <th>Kategoria</th>
+                    <th>Utworzony przez</th>
+                    <th>Data ostatniej modyfikacji</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for item in items %}
+                    <tr scope="row">
+                        <td>{{item.question }}</td>
+                        <td>{{ item.category.name }}</td>
+                        <td>{{ item.createdBy.name }} {{ item.createdBy.surname }}</td>
+                        <td>{{ item.modifiedTime|date('Y-m-d H:i') }}</td>
+                        <td>
+                            <a href="/qa/{{ item.id }}" class="btn btn-outline-primary">Podgląd</a>
+                            <a href="/qa/items/{{ item.id }}/edit" class="btn btn-primary">Edycja</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Brak pytań</p>
+        {% endif %}
+    </div>
+{% endblock %}

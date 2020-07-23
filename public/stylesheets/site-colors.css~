@@ -1,0 +1,92 @@
+/* INIT */
+body {background:#f5f5f5; font-size:10pt}
+a {color:#2782b6}
+h1,h2,h3,h4,h5,h6 {font-weight:500}
+
+/*Układ główne*/
+div#header,div#columns-position,div#footer {width:960px}
+
+/*Układ - zony*/
+/* 6zonelayoyt1 */
+div.zone-layout-6zoneslayout1 {width:960px; margin:0 auto; padding:0; background:#ffffff}
+div.zone-layout-6zoneslayout1 div.zamiatacz {clear:both}
+div.zone-layout-6zoneslayout1 div#zone-glowna {width:960px;}
+div.zone-layout-6zoneslayout1 div#zone-glowna div.block-separator {margin:5px 0}
+div.zone-layout-6zoneslayout1 div#zone-srodek {width:620px; float:left; padding-right:320px; margin-left:10px; border:none}
+div.zone-layout-6zoneslayout1 div#zone-srodek-belka {Width:620px; margin:0 0 10px 0}
+div.zone-layout-6zoneslayout1 div#zone-srodek-lewa, div.zone-layout-6zoneslayout1 div#zone-srodek-prawa {float:left; width:302px}
+div.zone-layout-6zoneslayout1 div#zone-srodek-lewa {margin-right:16px}
+div.zone-layout-6zoneslayout1 div#zone-prawa {width:302px; float:left; margin-left:-302px}
+div.zone-layout-6zoneslayout1 div#zone-dolna {width:940px; clear:both; margin:10px}
+
+/* 5zonelayoyt1 */
+div.zone-layout-5zoneslayout1 {width:960px; margin:0 auto; padding:0; background:#ffffff}
+div.zone-layout-5zoneslayout1 div.zamiatacz {clear:both}
+div.zone-layout-5zoneslayout1 div#zone-glowna {width:960px;}
+div.zone-layout-5zoneslayout1 div#zone-glowna div.block-separator {margin:5px 0}
+div.zone-layout-5zoneslayout1 div#zone-srodek {width:620px; float:left; padding-right:320px; margin-left:10px; border:none}
+div.zone-layout-5zoneslayout1 div#zone-srodek-belka {Width:620px; margin:0 0 10px 0}
+div.zone-layout-5zoneslayout1 div#zone-srodek-lewa, div.zone-layout-5zoneslayout1 div#zone-srodek-prawa {float:left; width:302px}
+div.zone-layout-5zoneslayout1 div#zone-srodek-lewa {margin-right:16px}
+div.zone-layout-5zoneslayout1 div#zone-prawa {width:302px; float:left; margin-left:-302px}
+div.zone-layout-5zoneslayout1 div#zone-dolna {width:940px; clear:both; margin:10px}
+
+/* Top menu */
+div#topmenu {background-color:#000; background-image:none}
+div#topmenu ul {width:960px;}
+div#topmenu ul#topmenu-firstlevel li {background-image:none}
+div#topmenu ul#topmenu-firstlevel li a {padding: 18px 11px 18px 12px;}
+div#topmenu ul#topmenu-firstlevel li a:hover {border-bottom:5px solid #666666; padding-bottom:12px}
+div#topmenu ul#topmenu-firstlevel li.selected a {background:#2e2e2e; border-bottom:5px solid #999; padding-bottom:12px}
+div#topmenu div.topmenu-design ul li a span {font-size:14px; font-weight:bold; font-family: Myriad Pro, Arial, Helvetica, sans-serif; line-height:1.5em}
+/*User menu */
+/*pozycjonowane w sekcji UKLAD GLOWNE*/
+div#usermenu-position {background:#333;width:100%; padding:9px 0}
+div#usermenu {margin:0 auto;  overflow:auto; height:auto; width:960px}
+div#searchbox {float:right; margin:0; padding:0; width:24em; background:url("../images/searchbox_l.png") #333333 no-repeat 0 0; padding-left:13px}
+div#searchbox input#searchtext, div#searchbox input#searchtext:focus {height:21px; border:1px solid #cdcdcd; border-left:none; border-right:none; background:#eee; margin:0; padding:0; font-size:10px; line-height:1em; color:#333}
+div#searchbox input#searchbutton, div#searchbox input#searchbutton:focus {background:url("../images/searchbox_r.png") no-repeat 0 0; border:none!important; border-left:1px solid #cdcdcd; height:23px; width:18px; padding-left:45px; color:#333; overflow:auto}
+div#searchbox input#searchbutton:focus {background-position:1px 0}
+/*Naglowek*/
+/*pozycjonowane w sekcji UKLAD GLOWNE*/
+div#logo {margin:0}
+/* Scieżka nawigacyjna*/
+div#path {color:#333; width:95%; font-size:14px; padding: 0.5em 0.5em 0.5em 1em;}
+div#path a {color:#2782b6}
+div#path span.path-separator, div#path span.path-text {color:#333}
+div#path span.path-separator {font-size:0.8em}
+
+div#baner-dzialy {background:#f5f5f5 url("../images/badania-banner.jpg") no-repeat; width:960px; height:245px; margin:10px auto 0 auto}
+/*Strona*/
+/*pozycjonowane w sekcji UKLAD GLOWNE*/
+div#columns {border-top:10px solid #f5f5f5; padding:0; padding-right:25em; background-color:#fff}
+div.noextrainfo div#main-position {background-color:#f5f5f5}
+div.content-view-full {padding:0 18px; margin-bottom:1.6em}
+div.content-view-full h1 {font-size:24px; font-weight:500; margin:0.9em 0 0.6em 0; padding:0}
+
+/* Sidemenu */
+div#sidemenu-position {margin-right:-25em; width:25em; float:right}
+div#sidemenu {border:1px solid #d4d4d4; margin:10px 10px 10px 0;}
+div#sidemenu div.border-box {padding:10px 20px; border-top:6px solid #fff4e5}
+div#sidemenu h4 {border-left:15px solid #ff9600; margin-top:-16px; padding:0.6em 1em; font-size:16px; font-weight:600}
+div#sidemenu h4 a {color:#2782b6}
+div#sidemenu ul.menu-list li a, div#sidemenu ul.submenu-list li a {padding:0.6em 0; border-top:1px solid #d4d4d4; font-size:13px}
+div#sidemenu ul.menu-list li:first-child a, div#sidemenu ul.submenu-list li:first-child a {border-top:none}
+/*Stopka*/
+/*pozycjonowane w sekcji UKLAD GLOWNE*/
+
+div#footer {background:#e4e4e4 ; height:80px; border-bottom:1px solid #b7b7b7;}
+div#footer address {height:45px; padding:40px 0 6px 85px; border-top:1px solid #cdcdcd; background:url("../images/pw_logo_stopka.png") no-repeat 0 100%; text-align:left; color:#666666}
+div#footer div#kanaly {float:right}
+div#footer div#kanaly div {float:right; margin-right:18px}
+div#footer div#kanaly div#kanal-facebook a{background:url("../images/f_logo.png"); width:40px; height:40px; display:block}
+div#footer div#kanaly div#kanal-facebook a:hover {text-indent:100%; white-space:nowrap; overflow:hidden}
+div#footer div#kanaly div#kanal-rss a {background:url("../images/rss_logo.png"); width:40px; height:40px; display:block}
+div#footer div#kanaly div#kanal-rss a:hover {text-indent:100%; white-space:nowrap; overflow:hidden}
+/*Itemized subitems */
+div.itemized_sub_items {margin:1em 0 1.6em 0; width:auto}
+
+/* Verticaly listed subitems */
+div.vertically_listed_sub_items {margin-bottom:1em}
+div.vertically_listed_sub_items div.content-view-embed h2 {padding-left:0}
+div.vertically_listed_sub_items div.content-view-embed div.content-view-children {font-size:1em}

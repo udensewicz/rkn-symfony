@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {% if article %}
+        {{ article.title }} :: Rada Kół Naukowych PW
+    {% else %}
+        Rada Kół Naukowych PW
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-10">
+                {% if article %}
+                                <h3 style="text-align: center">{{ article.title }}</h3>
+                    <br><br>
+                    {{ article.body|raw }}
+                    <br><br>
+                    <small style="text-align: right">Autor: {{ article.createdBy.name }} {{ article.createdBy.surname }}</small><br>
+                    <small style="text-align: right">
+                        Ostatnio zmodyfikowano: {{ article.modifiedTime|date('Y-m-d H:i') }} przez
+                        {{ article.modifiedBy.name }} {{ article.modifiedBy.surname }}
+                    </small>
+                    <br><br>
+                {% else %}
+                    <h3 style="text-align: center">Brak artykułu o szukanym numerze</h3>
+                    <br>
+                    <div class="mx-auto" style="width: 350px;">
+                        <img class="" src="/img/else/sad.gif" alt="Smutek" style="float: inside">
+                    </div>
+                    <br>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

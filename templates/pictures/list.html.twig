@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lista obrazów :: Rada Kół Naukowych PW{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="btn-group d-flex" role="group" aria-label="...">
+            <a role="button" class="btn btn-outline-primary w-100" href="/article/list">
+                <i class="far fa-newspaper fa-2x" style=" vertical-align: middle;"></i><span class="ml-2"><b>Artykuły</b></span>
+            </a>
+            <a role="button" class="btn btn-outline-primary w-100" href="/pictures/list">
+                <i class="far fa-images fa-2x" style=" vertical-align: middle;"></i><span class="ml-2"><b>Obrazy</b></span>
+            </a>
+            <a role="button" class="btn btn-outline-primary w-100" href="/files/list">
+                <i class="fas fa-file-upload fa-2x" style=" vertical-align: middle;"></i><span class="ml-2"><b>Pliki</b></span>
+            </a>
+            <a role="button" class="btn btn-outline-primary w-100" href="/menu">
+                <i class="fas fa-bars fa-2x" style=" vertical-align: middle;"></i><span class="ml-2"><b>Menu</b></span>
+            </a>
+        </div>
+    </div>
+    <div class="container-fluid">
+
+    <br><br>
+    <a href="/pictures/new" class="btn btn-primary btn-lg">Nowy obrazek</a>
+    <br><br>
+    {% if pictures %}
+        <br>
+        <table id="idatatable" datatable="" width="100%" class="display table table-hover table-bordered">
+            <thead>
+                <tr class="bg-primary">
+                    <th>Obrazek</th>
+                    <th>Link</th>
+                    <th>Dodany przez:</th>
+                    <th>Data dodania:</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for picture in pictures %}
+                <tr scope="row">
+                    <td>{{ picture.title }}</td>
+                    <td><a href="/uploads/pictures/{{ picture.picture}}">
+                        <img src="/uploads/pictures/{{ picture.picture}}" style="max-height: 200px; max-width: 300px">
+                    </a></td>
+                    <td>{{ picture.creator.name }} {{ picture.creator.surname }}</td>
+                    <td>{{ picture.created|date('Y-m-d H:i') }}</td>
+                    <td><a href="/pictures/{{ picture.id }}/edit" class="btn btn-primary">Edytuj/usuń</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Brak obrazów</p>
+    {% endif %}
+    
+    </div>
+{% endblock %}
+{#
+{% block additionaljs %}
+    <script type="text/javascript">
+        $(document).ready( function () {
+            $('#idatatable').DataTable();
+        } );
+    </script>
+{% endblock %}#}

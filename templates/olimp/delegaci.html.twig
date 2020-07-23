@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Delegaci :: Rada Kół Naukowych PW{% endblock %}
+
+{% block body %}
+    <div class="container">
+    <h4>Lista aktualnych członków Rady Kół Naukowych PW</h4>
+    {% if delegaci %}
+        <br>
+        <table id="idatatable" datatable="" width="100%" class="display table table-hover table-bordered">
+            <thead>
+                <tr  class="bg-primary">
+                    <th>Lp.</th>
+                    <th>Imię</th>
+                    <th>Nazwisko</th>
+                    <th>Jednostka delegująca</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for delegaci in delegaci %}
+                <tr scope="row">
+                    <td>{{ loop.index }}</td>
+                    <td>{{ delegaci.name }}</td>
+                    <td>{{ delegaci.surname }}</td>
+                    <td>{% if delegaci.kn == null %}
+                            Zarząd RKN
+                        {% else %}
+                            {{ delegaci.kn }}
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Brak delegatów</p>
+    {% endif %}
+    </div>
+{% endblock %}
+{#
+{% block additionaljs %}
+    <script type="text/javascript">
+        $(document).ready( function () {
+            $('#idatatable').DataTable();
+        } );
+    </script>
+{% endblock %}#}

@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Posiedzenia :: Rada Kół Naukowych PW{% endblock %}
+
+{% block body %}
+    <div class="container">
+    <h4>Posiedzenia RKN</h4>
+    {% if is_granted('ROLE_site_admin') %}
+        <a href="/meetings/new/" class="btn btn-primary">Dodaj posiedzenie</a>
+    {% endif %}
+    {% if meetings %}
+        <br>
+        <div {#class="container-fluid"#} id="accordion">
+        <br>
+        <div class="card text-primary bg-secondary" >
+            <div class="card-header text-center">
+                <h5>Lista posiedzeń RKN</h5>
+            </div>
+        </div>
+        {% for meeting in meetings %}
+            <div class="card " >
+                <a class="card-link text-dark" data-toggle="collapse" href="#target{{ loop.index }}">
+                    <div
+                            {% if 'now'|date('Y-m-d H:i') > meeting.dateStart|date('Y-m-d H:i') and
+                                'now'|date('Y-m-d H:i') < meeting.dateEnd|date('Y-m-d H:i')%}
+                                class=" card-header bg-warning"
+                            {% else %}
+                                class=" card-header"
+                            {% endif %}
+                            style="text-align: center"
+                    >
+                        <i class="float-left">
+                            {{ meeting.dateStart|date('Y-m-d H:i') }}
+                        </i>
+                        <b>{{ meeting.title }}</b>
+                        {% if meeting.published == false %}
+                            <span> - nieopublikowane!</span>
+                        {% endif %}
+                        <i class="float-right">
+                            <i class="fas fa-caret-down"></i>
+                        </i>
+                    </div>
+                </a>
+                <div id="target{{ loop.index }}" class="collapse" data-parent="#accordion">
+                    <div class="card-body">
+                        {% if is_granted('ROLE_site_admin') %}
+                            <a href="/meetings/{{ meeting.id }}/edit" class="btn btn-primary">Edytuj posiedzenie</a>
+                            <br/>
+                        {% endif %}
+                        {% if meeting.plan!='empty' %}
+                            {{ meeting.plan|raw }}
+                        {% endif %}
+                        <small>Zwołane przez: {{ meeting.createdBy.name }} {{ meeting.createdBy.surname }}</small><br/>
+                        <a href="/meetings/{{ meeting.id }}/attendance">Lista obecności</a><br/>
+                        <a href="/meetings/{{ meeting.id }}/votings">Głosowania</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+        {% else %}
+            <p>Brak planowanych posiedzeń</p>
+        {% endif %}
+
+        </div>
+    </div>
+{% endblock %}
+{#
+{% block additionaljs %}
+    <script type="text/javascript">
+        $(document).ready( function () {
+            $('#idatatable').DataTable();
+        } );
+    </script>
+{% endblock %}#}

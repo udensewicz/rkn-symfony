@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Zebrania Koła :: {{ kn.name }} :: Rada Kół Naukowych PW{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="btn-group d-flex" role="group" aria-label="...">
+            <a role="button" class="btn btn-outline-primary w-100" href="/kn/{{ kn.id }}/members">
+                <i class="fa fa-users fa-2x" style=" vertical-align: middle;"></i>
+                <span class="ml-2"><b>Członkowie</b></span>
+            </a>
+            <a role="button" class="btn btn-outline-primary w-100" href="/kn/{{ kn.id }}/meetings/all">
+                <i class="fa fa-calendar-alt fa-2x" style=" vertical-align: middle;"></i>
+                <span class="ml-2"><b>Zebrania</b></span>
+            </a>
+        </div>
+        <br/>
+
+        <h4>Zebrania {{ kn.nameD }}</h4>
+        {% if is_granted('ROLE_CHAIRMAN_'~kn.olimpId) %}
+            <a href="/kn/{{ kn.id }}/meetings/new/" class="btn btn-primary">Dodaj zebranie</a>
+        {% endif %}
+        {% if meetings %}
+        <br>
+            <div id="accordion">
+                <br>
+                <div class="card text-primary bg-secondary" >
+                    <div class="card-header text-center">
+                        <h5>Lista zebrań {{ kn.nameD }}</h5>
+                    </div>
+                </div>
+                {% for meeting in meetings %}
+                    <div class="card " >
+                        <a class="card-link text-dark" data-toggle="collapse" href="#target{{ loop.index }}">
+                            <div
+                                {% if 'now'|date('Y-m-d H:i') > meeting.dateStart|date('Y-m-d H:i') and
+                                    'now'|date('Y-m-d H:i') < meeting.dateEnd|date('Y-m-d H:i')%}
+                                    class=" card-header bg-warning"
+                                {% else %}
+                                    class=" card-header"
+                                {% endif %}
+                                style="text-align: center"
+                            >
+                                <i class="float-left">
+                                    {{ meeting.dateStart|date('Y-m-d H:i') }}
+                                </i>
+                                <b>{{ meeting.title }}</b>
+                                {% if meeting.published == false %}
+                                    <span> - nieopublikowane!</span>
+                                {% endif %}
+                                <i class="float-right">
+                                    <i class="fas fa-caret-down"></i>
+                                </i>
+                            </div>
+                        </a>
+                        <div id="target{{ loop.index }}" class="collapse" data-parent="#accordion">
+                            <div class="card-body">
+                                {% if is_granted('ROLE_CHAIRMAN_'~kn.olimpId) %}
+                                    <a href="/kn/meetings/{{ meeting.id }}/edit" class="btn btn-primary">Edytuj zebranie</a>
+                                    <br/>
+                                {% endif %}
+                                {% if meeting.plan!='empty' %}
+                                    {{ meeting.plan|raw }}
+                                {% endif %}
+                                <small>Zwołane przez: {{ meeting.createdBy.name }} {{ meeting.createdBy.surname }}</small><br/>
+                                <a href="/kn/meetings/{{ meeting.id }}/attendance">Lista obecności</a><br/>
+                                <a href="/kn/meetings/{{ meeting.id }}/votings">Głosowania</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+        {% else %}
+            <p>Brak planowanych zebrań</p>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,163 @@
+{% extends 'base.html.twig' %}
+{% block title %}Koła Naukowe Politechniki Warszawskiej :: Rada Kół Naukowych PW{% endblock %}
+
+{% block body %}
+    <style>
+        a.card-link:focus, a.card-link:hover {
+            background-color: #6aba9c;
+        }
+    </style>
+
+    <div class="row">
+    <div class="container-fluid col-md-9 col-sm-12 mt-3" id="accordion">
+        <h3>Lista Kół Naukowych Politechniki Warszawskiej</h3>
+        {#<div class="list-group">#}
+
+            {% set counter = '1' %}
+            {% set wcounter = '1' %}
+            {% for wydzial in wydzials %}
+            <br>
+                <div class="card text-primary bg-secondary" id="list-item-{{ wcounter }}" >
+                    <div class="card-header text-center">
+                        <h5>{{ wydzial.nazwa }}</h5>
+                    </div>
+                </div>
+            {% for org in orgs %}
+                {% if org.wydzial == wydzial.nazwa %}
+                    {% set fb = 'empty' %}
+                    {% set website = 'empty' %}
+                    {% set opis = 'empty' %}
+                    {% for www in wwws %}
+                        {% if www.id == org.id %}
+                            {% if www.type == 163842 %}
+                                {% if www.www|first != 'h' %}
+                                    {% if www.www|first != null %}
+                                        {% set website %}
+                                            http://{{ www.www }}
+                                        {% endset %}
+                                    {% endif %}
+                                {% else %}
+                                    {% set website %}
+                                        {{ www.www }}
+                                    {% endset %}
+                                {% endif %}
+                            {% else %}
+                                {% if www.www|first != 'h' %}
+                                    {% if www.www|first != null %}
+                                        {% set fb %}
+                                            http://{{ www.www }}
+                                        {% endset %}
+                                    {% endif %}
+                                {% else %}
+                                    {% set fb %}
+                                        {{ www.www }}
+                                    {% endset %}
+                                {% endif %}
+                            {% endif %}
+                            {% if www.opis is not null %}
+                                {% set opis %}
+                                    <p style="text-align: justify">
+                                        <b>Opis:</b>
+                                        {{ www.opis }}
+                                    </p>
+                                {% endset %}
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                    <div class="card ">
+                            {% if website!='empty' or fb!='empty' %}
+                                <a class="card-link text-dark" data-toggle="collapse" href="#target{{ counter }}">
+                                    <div class=" card-header">
+                                        {{ org.nazwa }}
+                                        <i class="float-right">
+                                            <i class="fas fa-caret-down"></i>
+                                        </i>
+                                    </div>
+                                </a>
+                        <div id="target{{ counter }}" class="collapse" data-parent="#accordion">
+                                <div class="card-body">
+                                    {#{{ remote_file_exists('https://mainframe.sspw.pl/?site=8011&org_id={{ org.id }}&p=n') }}#}
+                                    {#{% if remote_file_exists('https://mainframe.sspw.pl/?site=8011&org_id={{ org.id }}&p=n') %}#}
+                                    <img style="max-height:250px; width: auto; float: left; padding: 10px" src="https://mainframe.sspw.pl/?site=8011&org_id={{ org.id }}">
+                                    {#{% endif %}#}
+                                    <b>Zobacz też:</b>
+                                    <br>
+                                    {% if website!='empty' %}
+                                        <a href="{{ website }}"><i class="fas fa-external-link-alt fa-2x"></i></a>
+                                        &nbsp;
+                                    {% endif %}
+                                    {% if fb!='empty' %}
+                                        &nbsp;
+                                        <a href="{{ fb }}"><i class="fab fa-facebook fa-2x"></i></a>
+                                    {% endif %}
+                                    {% if opis!='empty' %}
+                                        <br><br>
+                                        {{ opis }}
+                                    {% endif %}
+                                </div>
+                        </div>
+                            {% else %}
+                                <div class=" card-header">
+                                    {{ org.nazwa }}
+                                </div>
+                            {% endif %}
+
+                    </div>
+                    {% set counter = counter + 1 %}
+                {% endif %}
+            {% endfor %}
+            {% set wcounter = wcounter + 1 %}
+            {% endfor %}
+        </div>
+
+
+
+
+    <div class="container-fluid col-md-3 col-sm-12 mt-3 bd-sidebar">
+        {#<nav id="toc" data-toggle="toc" class="navbar navbar-inverse navbar-fixed-right sticky-top" >#}
+            {#<div class="navbar nav bg-secondary " style="margin-left: 0px; margin-right: 0px">#}
+        <div class="wrapper navbar-fixed-right sticky-top">
+            <!-- Sidebar Holder -->
+            <nav id="sidebar" class="navbar navbar-dark bg-secondary">
+                <div class="sidebar-header text-right">
+                    <h3><p class="text-light">Wydział</p></h3>
+                </div>
+
+                <ul class="list-unstyled components">
+                    {% set wcounter = '1' %}
+                    {% for wydzial in wydzials %}
+                    <li class="active">
+                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
+                            <a href="#list-item-{{ wcounter }}" style="font-size: small">
+                                <li class="nav-item">{{ wydzial.nazwa }}</li>
+                            </a>
+                            {% set wcounter = wcounter + 1 %}
+                        </a>
+                        <ul class="collapse list-unstyled" id="homeSubmenu">
+                            <li><a href="#">Home 1</a></li>
+                        </ul>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </nav>
+
+            <!-- Page Content Holder -->
+
+        </div>
+                {#<ul  class="nav nav-tabs" role="tablist" >#}
+                {#{% set wcounter = '1' %}#}
+                {#{% for wydzial in wydzials %}#}
+                    {#<a href="#list-item-{{ wcounter }}" style="font-size: small"><li class="nav-item">{{ wydzial.nazwa }}</li></a>#}
+                    {#{% set wcounter = wcounter + 1 %}#}
+                {#{% endfor %}#}
+                {#</ul>#}
+            {#</div>#}
+        {#</nav>#}
+
+
+
+    </div>
+    </div>
+
+    <br>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Głosowanie na projekty :: Rada Kół Naukowych PW{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h4>{{ meeting.title }}</h4>
+        <p>Głosowanie na projekty zgłoszone do tej puli. </p>
+        <div>
+            Niestety nie masz prawa głosu w tym głosowaniu. Jeżeli uważasz, że nie powinno tak być, sprawdź
+            <a href="/meetings/{{ meeting.id }}/attendance">swoją obecność na posiedzeniu</a>.
+        </div>
+    </div>
+
+{% endblock %}

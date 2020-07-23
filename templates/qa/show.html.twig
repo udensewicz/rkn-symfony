@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ question.question }} :: Rada Kół Naukowych PW{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-10">
+                {% if question %}
+                    <h3 style="text-align: center">{{ question.question }}</h3>
+                    <br><br>
+                    {{ question.answer|raw }}
+                    <br><br>
+                    <small style="text-align: right">Autor: {{ question.createdBy.name }} {{ question.createdBy.surname }}</small><br>
+                    <small style="text-align: right">
+                        Ostatnio zmodyfikowano: {{ question.modifiedTime|date('Y-m-d H:i') }} przez
+                        {{ question.modifiedBy.name }} {{ question.modifiedBy.surname }}
+                    </small>
+                    <br><br>
+                {% else %}
+                    <h3 style="text-align: center">Brak szukanego pytania</h3>
+                    <br>
+                    <div class="mx-auto" style="width: 350px;">
+                        <img class="" src="/img/else/sad.gif" alt="Smutek" style="float: inside">
+                    </div>
+                    <br>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

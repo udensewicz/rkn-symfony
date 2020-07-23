@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Głosowanie :: {{ kn.name }} :: Rada Kół Naukowych PW{% endblock %}
+
+{% block body %}
+    <div class="row justify-content-center">
+        <div class="col-10">
+            <h4>{{ meeting.title }}</h4>
+            <p>Głosowanie w sprawie: {{ votingGroup.subject }}</p>
+            <div>Głosowanie juz sie zakończyło.
+                <table class="display table table-bordered">
+                    <tbody>
+                    <tr>
+                        <td>Uprawnionych do głosowania</td>
+                        <td>{{ attendance|length }}</td>
+                    </tr>
+                    <tr>
+                        <td>Oddanych głosów</td>
+                        <td>{{ votingGroup.votings[0].votes|length }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                {% for voting in votingGroup.votings %}
+                    <p>{{ voting.subject }}</p>
+                    <table class="display table table-bordered">
+                        <tbody>
+                        <tr>
+                            <td>Głosów za</td>
+                            <td>{{ voting.votes|filter(v=>v.vote == 1)|length }}</td>
+                        </tr>
+                        <tr>
+                            <td>Głosów przeciw</td>
+                            <td>{{ voting.votes|filter(v=>v.vote == 2)|length }}</td>
+                        </tr>
+                        <tr>
+                            <td>Wstrzymujących się</td>
+                            <td>{{ voting.votes|filter(v=>v.vote == 3)|length }}</td>
+                        </tr>
+                        <tr>
+                            <td>Głosów nieważnych</td>
+                            <td>{{ voting.votes|filter(v=>v.vote is null)|length }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                {% endfor %}
+            </div>
+            <div>
+                <a href="/kn/meetings/{{ meeting.id }}/votings" class="btn btn-primary">
+                    Powrót do głosowań
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

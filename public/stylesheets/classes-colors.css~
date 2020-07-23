@@ -1,0 +1,138 @@
+
+
+/* Bloki Frontpage */
+div.separator {background-image:none; border-bottom:1px solid #F1F1ED; height:9px}
+div.block-separator {margin:0.6em 0}
+div.items-scroll {overflow-y:scroll}
+div.block-type-infoboxmanual, div.block-type-dynamic5items, div.block-type-dynamic2events, div.block-type-aktualnosci {border-width:1px; border-style:solid; border-color:#d4d4d4}
+/* 1 TopInfo Manual*/
+div.block-type-topinfomanual {clear:both; margin:0}
+/* 1 InfoboxManual */
+div.infobox-standard {height:325px}
+div.infobox-baner {height:155px}
+
+/* 5 Items Dynamic*/
+div.block-type-dynamic5items {height:670px;}
+div.block-type-dynamic5items .block-content {border-top-style:solid; border-top-width:6px; padding:0 6px 6px 20px}
+div.block-type-dynamic5items h2 {border-left-width:15px; border-left-style:solid; color:#2782b6; margin-top:-6px; padding:0.6em 1em; font-size:16px; font-weight:600}
+div.block-type-dynamic5items div.block-content div.items {padding-right:1em}
+div.block-type-dynamic5items h3 {font-size:18px; margin-top:0.6em}
+
+.scrolled { width: 274px; clear: both}
+.scrolled .viewport { height: 610px; overflow: hidden; position: relative }
+.scrolled .overview { list-style: none; position: absolute; left: 0; top: 0}
+.scrolled .thumb .end, .scrolled .thumb { background-color: #d4d4d4; }
+.scrolled .scrollbar { position: relative; float: right; width: 11px; }
+.scrolled .track { background-color: #f5f5f5; height: 610px; width:9px; position: relative; padding: 0 1px; }
+.scrolled .thumb { height: 20px; width: 9px; cursor: pointer; overflow: hidden; position: absolute; top: 0; }
+.scrolled .thumb .end { overflow: hidden; height: 5px; width: 9px; }
+.scrolled .disable{ display: none; }
+.noSelect { user-select: none; -o-user-select: none; -moz-user-select: none; -khtml-user-select: none; -webkit-user-select: none; }
+
+/* Dynamic 2 Events */
+div.block-type-dynamic2events h2 {font-weight:600}
+div.block-type-dynamic2events div#ezagenda_calendar table.ezagenda_month_event {border:none; border-top:1px solid #F1F1ED; margin-bottom:1px; width:99%}
+div.block-type-dynamic2events table.ezagenda_month_event td.ezagenda_month_label {width:57px}
+div.block-type-dynamic2events table.ezagenda_month_event td.ezagenda_month_label h3 {border:1px solid #d2d2c5; padding:3px; color:#979797; font-size:1em; font-weight:normal; width:24px; margin:6px 0; background:#eeeee5 url(../images/date_bg.png) repeat-x scroll center bottom; text-align:center}
+div.block-type-dynamic2events table.ezagenda_month_event td.ezagenda_month_label h3 span.ezagenda_month_label_date {display: block}
+div.block-type-dynamic2events table.ezagenda_month_event td.ezagenda_month_info h4 {font-size:16px}
+
+div.block-type-dynamic2events .block-content {border-top-style:solid; border-top-width:6px; padding:0 20px 6px 20px}
+div.block-type-dynamic2events h2 {border-left-width:15px; border-left-style:solid; color:#2782b6; margin-top:-6px; padding:0.6em 1em; font-size:16px}
+
+/*Aktualnosci Dynamic */
+div.block-type-aktualnosci {margin:0 10px}
+div.block-type-aktualnosci div.tab-link{width:186px;position:absolute; left:0; bottom:0; height:15px; background:#fcfcfc; padding:3px 3px 0 0; border-right:1px solid #d4d4d4; border-top:1px solid #d4d4d4; text-align:right; font-size:0.8em}
+
+/* Mainstory */
+div.block-type-mainstory {width:960px; height:400px; position:relative}
+div.block-type-mainstory div.mainstory-ramka {border:10px solid #f7f7f7; position:absolute; top:0; left:0; width:940px; height:380px; opacity:0.5; background-color: transparent}
+div.block-type-mainstory div.trans-background, div.block-type-mainstory div.attribute-link {margin-top:-67px!important; margin-left:10px}
+
+/*Wersje kolorystyczne */
+div.blok_niebieski  {border-color:#e5f5ff}
+div.blok_niebieski  h2 {border-color:#0099ff}  
+div.blok_fioletowy {border-color:#f1e5ff}
+div.blok_fioletowy h2 {border-color:#7800ff}
+div.blok_rozowy {border-color:#fae5fa}
+div.blok_rozowy h2 {border-color:#cc00cc}
+div.blok_czerwony {border-color:#ffe5f0}
+div.blok_czerwony h2 {border-color:#ff006c}
+div.blok_zielony {border-color:#f8fae5}
+div.blok_zielony h2 {border-color:#b6cc00}
+div.blok_pomaranczowy {border-color:#fff4e5}
+div.blok_pomaranczowy h2 {border-color:#ff9600}
+/* Bloki frontpage: KONIEC */
+
+/* Frontpage */
+div.class-frontpage h3 a, div.class-frontpage h4 a {color:#535548}
+/* TopInfo */
+  /*Block view*/
+div.block-type-topinfomanual div.class-topinfo {padding-bottom:10px; position:relative; background:#f5f5f5}
+div.block-type-topinfomanual div.class-topinfo div.opis {overflow:auto; position:absolute; bottom:23px; right:10px}
+div.block-type-topinfomanual div.class-topinfo div.opis * {float:right; color:#fff}
+div.block-type-topinfomanual div.class-topinfo div.opis h2 {background:blue; font-size:23px; padding:15px; margin:0; font-weight:600;}
+div.block-type-topinfomanual div.class-topinfo div.opis p {clear:right; background:none; padding:0.6em 1em; margin:0; font-size:16px; background-color: rgb(0, 0, 0);
+/* RGBa with 0.6 opacity */
+background-color: rgba(0, 0, 0, 0.6);
+/* For IE 5.5 - 7*/
+filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+/* For IE 8*/
+-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)"; }
+div.block-type-topinfomanual div.class-topinfo div.opis p a {clear:right}
+div.block-type-topinfomanual div.class-topinfo div.topinfo-ramka {position:absolute; top:0; left:0; border:10px solid #f7f7f7; width:940px; height:380px; opacity:0.5; z-index:1}
+
+/*Infobox*/
+  /*Block view*/
+div.block-type-infoboxmanual div.class-infobox {border-top-style:solid; border-top-width:6px; padding:0 20px 6px 20px}
+div.block-type-infoboxmanual div.class-infobox h2 {border-left-width:15px; border-left-style:solid; color:#2782b6; margin-top:-6px; padding:0.6em 1em; font-size:16px; font-weight:600}
+div.block-type-infoboxmanual div.class-infobox div.attribute-content h3 {font-size:24px}
+div.block-type-infoboxmanual div.class-infobox div.attribute-content ul {margin-left:0}
+
+
+/* Article */
+  /* Full */
+div.class-article h1 {margin-bottom:0.3em}
+
+  /* Line */
+div.content-view-line div.class-article {margin:0.9em 0 1.2em 0}
+div.content-view-line div.class-article h3 {font-size:1.6em}
+  /* Block slide view */
+#featured{ width:740px; padding-left:190px; position:relative;  background:#fff; height:255px; z-index:0}
+#featured ul.ui-tabs-nav{ position:absolute; top:0; left:0; list-style-image:none; padding:0; margin:0; width:190px; background:#f7f7f7;}
+#featured ul.ui-tabs-nav li{ margin:0;padding:0; font-size:12px; color:#666;background-image:none; vertical-align:middle; border:1px solid #d4d4d4; border-left:none;border-top:none}
+#featured ul.ui-tabs-nav li img{ float:left; margin:2px 5px; background:#fff; padding:2px; border:1px solid #eee;}
+#featured ul.ui-tabs-nav li span{ font-size:11px; font-family:Verdana; line-height:18px; }
+#featured li.ui-tabs-nav-item a{ display:block; height:63px; line-height:18px; padding:0.7em; padding-top:7px}
+#featured li.ui-tabs-nav-item a:hover{ background:#f2f2f2;}
+#featured li.ui-tabs-selected{ background:url('../images/selected-item.gif') top left no-repeat; }
+#featured ul.ui-tabs-nav li.ui-tabs-selected a{ background:#ccc; color:#333; background:#fff;  margin-right:-1px}
+#featured .ui-tabs-panel{ height:255px; position:relative; padding-left:18px; overflow:auto}
+#featured .ui-tabs-panel h3 {font-size:24px; margin-bottom:0.6em; padding-top:0.4em;}
+#featured .ui-tabs-panel div.attribute-image {float:left; margin:0; padding-right:1em}
+#featured .ui-tabs-hide{ display:none; }
+
+  /* Block view */
+div.more-link {text-align:right}
+
+
+/* Folder */
+  /*Itemized subitems*/
+
+/* File */
+.attribute-pdf {margin:0.9em 0}
+.attribute-pdf a {padding-left:31px}
+
+/* Akt prawny */
+div.akt-prawny {clear:both; margin:0.6em 0 0.3em 0; overflow:auto;}
+div.akt-prawny div {float:left;}
+div.akt-prawny div.tytul {padding-left:2.2em}
+div.akt-prawny div.numer {float:left; margin-right:-2em}
+
+/* Custom tags */
+div.ctag-zrodlo {font-size:0.8em; color:#888; font-style:italic}
+
+/* Authority */
+div.class-authority {clear:both; margin-bottom:35px; overflow:auto}
+div.class-authority div.attribute-header h1 {margin:0 0 0.6em 0}
+div.class-authority div.attribute-image {float:right; margin:1em}

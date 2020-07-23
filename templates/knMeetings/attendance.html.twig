@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Obecność na zebraniu Koła :: {{ kn.name }} :: Rada Kół Naukowych PW{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h4>{{ meeting.title }}</h4>
+        <p>Obecność członków {{ kn.nameD }} na zebraniu</p>
+        {% if 'now'|date('Y-m-d H:i') > meeting.dateStart|date('Y-m-d H:i')
+            and 'now'|date('Y-m-d H:i') < meeting.dateEnd|date('Y-m-d H:i')
+            and is_granted('ROLE_CHAIRMAN_'~kn.olimpId)%}
+            {{ form_start(form) }}
+        {% endif %}
+        {% if members %}
+            <br>
+            <table id="idatatable" datatable="" width="100%" class="display table table-hover table-bordered">
+                <thead>
+                <tr class="bg-primary">
+                    <th>Lp.</th>
+                    <th>Imię</th>
+                    <th>Nazwisko</th>
+                    <th>Rola</th>
+                    <th>Obecność</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for member in members %}
+                    <tr scope="row">
+                        <td>{{ loop.index }}</td>
+                        <td>{{ member.name }}</td>
+                        <td>{{ member.surname }}</td>
+                        <td>{{ member.role_type == 'W' ? 'Członek' : 'Stowarzyszony' }}</td>
+                        <td>
+                            {% if 'now'|date('Y-m-d H:i') > meeting.dateStart|date('Y-m-d H:i')
+                                and 'now'|date('Y-m-d H:i') < meeting.dateEnd|date('Y-m-d H:i')
+                                and is_granted('ROLE_CHAIRMAN_'~kn.olimpId)%}
+                                {{ form_row(attribute(form, 'present' ~ member.rvid )) }}
+                            {% elseif member.present %}
+                                Tak
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {% if 'now'|date('Y-m-d H:i') > meeting.dateStart|date('Y-m-d H:i')
+                and 'now'|date('Y-m-d H:i') < meeting.dateEnd|date('Y-m-d H:i')
+                and is_granted('ROLE_CHAIRMAN_'~kn.olimpId)%}
+                {{ form_row(form.submit) }}
+                {{ form_end(form) }}
+            {% endif %}
+        {% else %}
+            <p>Brak członków Koła</p>
+        {% endif %}
+    </div>
+{% endblock %}
+
+

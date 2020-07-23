@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edytuj menu :: Rada Kół Naukowych PW{% endblock %}
+
+{%  block body %}
+    <div class="container">
+        <h3>Edytuj elementy podrzędne kategorii {{ category.name }}</h3>
+        {{ form_start(form) }}
+        <table class="display table table-hover table-bordered">
+            <thead>
+            <th>Nazwa pola</th>
+            <th>Kolejność</th>
+            <th>Link</th>
+            <th>Kategoria nadrzędna</th>
+            <th>Usuń</th>
+            </thead>
+            <tbody>
+            {% for item in form.items %}
+                <tr>
+                    <td>{{ form_row(item.name) }}</td>
+                    <td>{{ form_row(item.ordering) }}</td>
+                    <td>{{ form_row(item.link) }}</td>
+                    <td>{{ form_row(item.parent) }}</td>
+                    <td>{{ form_row(item.deleted) }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <br><br>
+        <div>
+            <a href="/menu/{{ category.id }}/add" style="margin-top: 16px" class="btn btn-primary">Dodaj nowe</a>
+            <a href="/menu/{{ category.id }}/add_divider" style="margin-top: 16px" class="btn btn-primary">Dodaj podział sekcji</a>
+            {{ form_widget(form.save) }}
+            <a href="/menu" style="margin-top: 16px" class="btn btn-primary">Wróć do edycji głównego menu</a>
+        </div>
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}

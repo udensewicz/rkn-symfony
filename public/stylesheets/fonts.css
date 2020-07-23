@@ -1,0 +1,280 @@
+:root {
+    --blue: #007bff;
+    --indigo: #6610f2;
+    --purple: #6f42c1;
+    --pink: #e83e8c;
+    --red: #d9534f;
+    --orange: #fd7e14;
+    --yellow: #f0ad4e;
+    --green: #4BBF73;
+    --teal: #20c997;
+    --cyan: #1F9BCF;
+    --white: #fff;
+    --gray: #919aa1;
+    --gray-dark: #343a40;
+    --primary: #1a1a1a;
+    --secondary: #fff;
+    --success: #4BBF73;
+    --info: #1F9BCF;
+    --warning: #f0ad4e;
+    --danger: #d9534f;
+    --light: #fff;
+    --dark: #343a40;
+    --breakpoint-xs: 0;
+    --breakpoint-sm: 576px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 992px;
+    --breakpoint-xl: 1200px;
+    --font-family-sans-serif: 'adagio_slab', 'radikal_wutbold';
+    --font-family-monospace: 'adagio_slab', 'radikal_wutbold';
+}
+
+body {
+    font-family: 'adagio_slab', 'radikal_wutbold';
+}
+
+@font-face {
+    font-family: 'adagio_slab';
+    src: url('fonts/adagio_slab-extralight-webfont.eot');
+    src: url('fonts/adagio_slab-extralight-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/adagio_slab-extralight-webfont.woff2') format('woff2'),
+         url('fonts/adagio_slab-extralight-webfont.woff') format('woff'),
+         url('fonts/adagio_slab-extralight-webfont.ttf') format('truetype'),
+         url('fonts/adagio_slab-extralight-webfont.svg#adagio_slabextralight') format('svg');
+    font-weight: 100;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'adagio_slab';
+    src: url('fonts/adagio_slab-extralight_italic-webfont.eot');
+    src: url('fonts/adagio_slab-extralight_italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/adagio_slab-extralight_italic-webfont.woff2') format('woff2'),
+         url('fonts/adagio_slab-extralight_italic-webfont.woff') format('woff'),
+         url('fonts/adagio_slab-extralight_italic-webfont.ttf') format('truetype'),
+         url('fonts/adagio_slab-extralight_italic-webfont.svg#adagio_slabextralight_italic') format('svg');
+    font-weight: 100;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'adagio_slab';
+    src: url('fonts/adagio_slab-thin-webfont.eot');
+    src: url('fonts/adagio_slab-thin-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/adagio_slab-thin-webfont.woff2') format('woff2'),
+         url('fonts/adagio_slab-thin-webfont.woff') format('woff'),
+         url('fonts/adagio_slab-thin-webfont.ttf') format('truetype'),
+         url('fonts/adagio_slab-thin-webfont.svg#adagio_slabthin') format('svg');
+    font-weight: 200;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'adagio_slab';
+    src: url('fonts/adagio_slab-thin_italic-webfont.eot');
+    src: url('fonts/adagio_slab-thin_italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/adagio_slab-thin_italic-webfont.woff2') format('woff2'),
+         url('fonts/adagio_slab-thin_italic-webfont.woff') format('woff'),
+         url('fonts/adagio_slab-thin_italic-webfont.ttf') format('truetype'),
+         url('fonts/adagio_slab-thin_italic-webfont.svg#adagio_slabthin_italic') format('svg');
+    font-weight: 200;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'adagio_slab';
+    src: url('fonts/adagio_slab-light-webfont.eot');
+    src: url('fonts/adagio_slab-light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/adagio_slab-light-webfont.woff2') format('woff2'),
+         url('fonts/adagio_slab-light-webfont.woff') format('woff'),
+         url('fonts/adagio_slab-light-webfont.ttf') format('truetype'),
+         url('fonts/adagio_slab-light-webfont.svg#adagio_slablight') format('svg');
+    font-weight: 300;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'adagio_slab';
+    src: url('fonts/adagio_slab-light_italic-webfont.eot');
+    src: url('fonts/adagio_slab-light_italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/adagio_slab-light_italic-webfont.woff2') format('woff2'),
+         url('fonts/adagio_slab-light_italic-webfont.woff') format('woff'),
+         url('fonts/adagio_slab-light_italic-webfont.ttf') format('truetype'),
+         url('fonts/adagio_slab-light_italic-webfont.svg#adagio_slablight_italic') format('svg');
+    font-weight: 300;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'adagio_slab';
+    src: url('fonts/adagio_slab-regular-webfont.eot');
+    src: url('fonts/adagio_slab-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/adagio_slab-regular-webfont.woff2') format('woff2'),
+         url('fonts/adagio_slab-regular-webfont.woff') format('woff'),
+         url('fonts/adagio_slab-regular-webfont.ttf') format('truetype'),
+         url('fonts/adagio_slab-regular-webfont.svg#adagio_slabregular') format('svg');
+    font-weight: 400;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'adagio_slab';
+    src: url('fonts/adagio_slab-regular_italic-webfont.eot');
+    src: url('fonts/adagio_slab-regular_italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/adagio_slab-regular_italic-webfont.woff2') format('woff2'),
+         url('fonts/adagio_slab-regular_italic-webfont.woff') format('woff'),
+         url('fonts/adagio_slab-regular_italic-webfont.ttf') format('truetype'),
+         url('fonts/adagio_slab-regular_italic-webfont.svg#adagio_slabitalic') format('svg');
+    font-weight: 400;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'adagio_slab';
+    src: url('fonts/adagio_slab-medium-webfont.eot');
+    src: url('fonts/adagio_slab-medium-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/adagio_slab-medium-webfont.woff2') format('woff2'),
+         url('fonts/adagio_slab-medium-webfont.woff') format('woff'),
+         url('fonts/adagio_slab-medium-webfont.ttf') format('truetype'),
+         url('fonts/adagio_slab-medium-webfont.svg#adagio_slabmedium') format('svg');
+    font-weight: 500;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'adagio_slab';
+    src: url('fonts/adagio_slab-medium_italic-webfont.eot');
+    src: url('fonts/adagio_slab-medium_italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/adagio_slab-medium_italic-webfont.woff2') format('woff2'),
+         url('fonts/adagio_slab-medium_italic-webfont.woff') format('woff'),
+         url('fonts/adagio_slab-medium_italic-webfont.ttf') format('truetype'),
+         url('fonts/adagio_slab-medium_italic-webfont.svg#adagio_slabmedium_italic') format('svg');
+    font-weight: 500;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'adagio_slab';
+    src: url('fonts/adagio_slab-semibold-webfont.eot');
+    src: url('fonts/adagio_slab-semibold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/adagio_slab-semibold-webfont.woff2') format('woff2'),
+         url('fonts/adagio_slab-semibold-webfont.woff') format('woff'),
+         url('fonts/adagio_slab-semibold-webfont.ttf') format('truetype'),
+         url('fonts/adagio_slab-semibold-webfont.svg#adagio_slabsemibold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'adagio_slab';
+    src: url('fonts/adagio_slab-semibold_italic-webfont.eot');
+    src: url('fonts/adagio_slab-semibold_italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/adagio_slab-semibold_italic-webfont.woff2') format('woff2'),
+         url('fonts/adagio_slab-semibold_italic-webfont.woff') format('woff'),
+         url('fonts/adagio_slab-semibold_italic-webfont.ttf') format('truetype'),
+         url('fonts/adagio_slab-semibold_italic-webfont.svg#adagio_slabsemibold_italic') format('svg');
+    font-weight: 600;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'adagio_slab';
+    src: url('fonts/adagio_slab-bold-webfont.eot');
+    src: url('fonts/adagio_slab-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/adagio_slab-bold-webfont.woff2') format('woff2'),
+         url('fonts/adagio_slab-bold-webfont.woff') format('woff'),
+         url('fonts/adagio_slab-bold-webfont.ttf') format('truetype'),
+         url('fonts/adagio_slab-bold-webfont.svg#adagio_slabbold') format('svg');
+    font-weight: 700;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'adagio_slab';
+    src: url('fonts/adagio_slab-bold_italic-webfont.eot');
+    src: url('fonts/adagio_slab-bold_italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/adagio_slab-bold_italic-webfont.woff2') format('woff2'),
+         url('fonts/adagio_slab-bold_italic-webfont.woff') format('woff'),
+         url('fonts/adagio_slab-bold_italic-webfont.ttf') format('truetype'),
+         url('fonts/adagio_slab-bold_italic-webfont.svg#adagio_slabbold_italic') format('svg');
+    font-weight: 700;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'adagio_slab';
+    src: url('fonts/adagio_slab-black-webfont.eot');
+    src: url('fonts/adagio_slab-black-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/adagio_slab-black-webfont.woff2') format('woff2'),
+         url('fonts/adagio_slab-black-webfont.woff') format('woff'),
+         url('fonts/adagio_slab-black-webfont.ttf') format('truetype'),
+         url('fonts/adagio_slab-black-webfont.svg#adagio_slabblack') format('svg');
+    font-weight: 800;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'adagio_slab';
+    src: url('fonts/adagio_slab-black_italic-webfont.eot');
+    src: url('fonts/adagio_slab-black_italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/adagio_slab-black_italic-webfont.woff2') format('woff2'),
+         url('fonts/adagio_slab-black_italic-webfont.woff') format('woff'),
+         url('fonts/adagio_slab-black_italic-webfont.ttf') format('truetype'),
+         url('fonts/adagio_slab-black_italic-webfont.svg#adagio_slabblack_italic') format('svg');
+    font-weight: 800;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'adagio_slab';
+    src: url('fonts/adagio_slab-heavy-webfont.eot');
+    src: url('fonts/adagio_slab-heavy-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/adagio_slab-heavy-webfont.woff2') format('woff2'),
+         url('fonts/adagio_slab-heavy-webfont.woff') format('woff'),
+         url('fonts/adagio_slab-heavy-webfont.ttf') format('truetype'),
+         url('fonts/adagio_slab-heavy-webfont.svg#adagio_slabheavy') format('svg');
+    font-weight: 900;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'adagio_slab';
+    src: url('fonts/adagio_slab-heavy_italic-webfont.eot');
+    src: url('fonts/adagio_slab-heavy_italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/adagio_slab-heavy_italic-webfont.woff2') format('woff2'),
+         url('fonts/adagio_slab-heavy_italic-webfont.woff') format('woff'),
+         url('fonts/adagio_slab-heavy_italic-webfont.ttf') format('truetype'),
+         url('fonts/adagio_slab-heavy_italic-webfont.svg#adagio_slabheavy_italic') format('svg');
+    font-weight: 900;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'radikal_wutbold';
+    src: url('fonts/radikalwut-bold.eot');
+    src: url('fonts/radikalwut-bold.eot?#iefix') format('embedded-opentype'),
+         url('fonts/radikalwut-bold.woff2') format('woff2'),
+         url('fonts/radikalwut-bold.woff') format('woff'),
+         url('fonts/radikalwut-bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}

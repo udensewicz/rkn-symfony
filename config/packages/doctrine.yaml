@@ -1,0 +1,41 @@
+doctrine:
+    dbal:
+        connections:
+            default:
+                charset: utf8
+                dbname: ew3
+                default_table_options:
+                    charset: utf8
+                    collate: pl_PL.utf8
+                driver: pdo_pgsql
+#                server_version: "9.8" used to be
+                server_version: "10.0.1.6"
+                url: "%env(resolve:DATABASE_URL)%"
+            rkn:
+                charset: utf8
+                dbname: rkn-symfony
+                default_table_options:
+                    charset: utf8
+                    collate: pl_PL.utf8
+                driver: pdo_pgsql
+                server_version: "10.1"
+                url: "%env(resolve:DATABASE_RKN_URL)%"
+        default_connection: default
+    orm:
+        auto_generate_proxy_classes: "%kernel.debug%"
+        default_entity_manager: default
+        entity_managers:
+            default:
+                naming_strategy: doctrine.orm.naming_strategy.underscore
+                connection: rkn
+                mappings:
+                    default:
+                        alias: default
+                        dir: "%kernel.project_dir%/src/Entity"
+                        is_bundle: false
+                        prefix: App\Entity
+                        type: annotation
+parameters:
+    env(DATABASE_RKN_URL): ""
+    env(DATABASE_URL): ""
+

@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Głosowanie na projekty :: Rada Kół Naukowych PW{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h4>{{ meeting.title }}</h4>
+        <p>Głosowanie na projekty zgłoszone do tej puli</p>
+        {{ form_start(form) }}
+        {% for project in projects %}
+            <h6>{{ project.knShort }}</h6>
+            <h5>{{ project.name }} </h5>
+            <h6>Wnioskowana kwota {{ project.moneyMaxAmount }}</h6>
+            {{ form_row(form.votes[loop.index-1]) }}
+            <br/><hr/><br/>
+        {% endfor %}
+
+        {{ form_row(form.save) }}
+        {{ form_row(form.submit) }} <span>(Nie będzie już można zmienić)</span>
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}

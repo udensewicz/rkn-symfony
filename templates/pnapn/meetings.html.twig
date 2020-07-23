@@ -1,0 +1,115 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Posiedzenia Puli na Projekty Naukowe :: Rada Kół Naukowych PW{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h4>Posiedzenia Puli na Projekty Naukowe</h4>
+        {% if meetings %}
+        <br>
+        <div id="accordion">
+            <br>
+            <div class="card text-primary bg-secondary" >
+                <div class="card-header text-center">
+                    <h5>Lista posiedzeń oceniających Puli na Projekty Naukowe</h5>
+                </div>
+            </div>
+            {% for meetingObj in meetings %}
+                <div class="card " >
+                    <a class="card-link text-dark" data-toggle="collapse" href="#target{{ loop.index }}">
+                        <div
+                            {% if 'now'|date('Y-m-d H:i') > meetingObj.meeting.dateStart|date('Y-m-d H:i') and
+                                'now'|date('Y-m-d H:i') < meetingObj.meeting.dateEnd|date('Y-m-d H:i')%}
+                                class=" card-header bg-warning"
+                            {% else %}
+                                class=" card-header"
+                            {% endif %}
+                            style="text-align: center"
+                        >
+                            <i class="float-left">
+                                {{ meetingObj.meeting.dateStart|date('Y-m-d H:i') }}
+                            </i>
+                            <b>{{ meetingObj.meeting.title }}</b>
+                            {% if meetingObj.meeting.published == false %}
+                                <span> - nieopublikowane!</span>
+                            {% endif %}
+                            <i class="float-right">
+                                <i class="fas fa-caret-down"></i>
+                            </i>
+                        </div>
+                    </a>
+                    <div id="target{{ loop.index }}" class="collapse" data-parent="#accordion">
+                        <div class="card-body">
+                            {% if is_granted('ROLE_site_admin') %}
+                            <a href="/meetings/pnapn/{{ meetingObj.meeting.id }}/edit" class="btn btn-primary">Edytuj warunki zgłaszania</a>
+                            <br/>
+                            {% endif %}
+                            {#content#}
+                            <a href="/meetings/{{ meetingObj.meeting.id }}/attendance">Lista obecności</a><br/>
+                            <a href="/meetings/pnapn/{{ meetingObj.meeting.id }}/voting">Głosowanie na projekty</a>
+                            {% if meetingObj.projects %}
+                                <div>Projekty zgłoszone w ramach tej puli:
+                                    {% if is_granted('ROLE_site_admin') %}
+                                        {{ form_start(meetingObj.form) }}
+                                    {% endif %}
+                                    <table class="display table table-hover table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <th>Lp.</th>
+                                            <th>Nazwa projektu</th>
+                                            <th>Jednostka</th>
+                                            <th>{{ meetingObj.meeting.pnapnVoting.type != 'd' ? 'Kwota maks.' : 'Wniosk. kwota' }}</th>
+                                            {% if meetingObj.meeting.pnapnVoting.type != 'd' %}
+                                            <th>Kwota min.</th>
+                                            {% endif %}
+                                            <th>Nr prez.</th>
+                                            <th>Status</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for project in meetingObj.projects %}
+                                        <tr>
+                                            <td>{{ loop.index }}</td>
+                                            <td>{{ project.name }}</td>
+                                            <td>{{ project.knShort }}</td>
+                                            <td>{{ project.moneyMaxAmount }}</td>
+                                            {% if meetingObj.meeting.pnapnVoting.type != 'd' %}
+                                            <td>{{ project.moneyMinAmount ? project.moneyMinAmount : 0 }}</td>
+                                            {% endif %}
+                                            {% if is_granted('ROLE_site_admin') %}
+                                                <td style="width: 8%">{{ form_row(meetingObj.form.projects[loop.index-1].presentationOrder) }}</td>
+                                                <td style="width: 13%">{{ form_row(meetingObj.form.projects[loop.index-1].status) }}</td>
+                                            {% else %}
+                                                <td>{{ project.presentationOrder }}</td>
+                                                <td>{{ statuses[project.status] }}</td>
+                                            {% endif %}
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                    {% if is_granted('ROLE_site_admin') %}
+                                        {{ form_end(meetingObj.form) }}
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                            <small>Zwołane przez: {{ meetingObj.meeting.createdBy.name }} {{ meetingObj.meeting.createdBy.surname }}</small><br/>
+                            {#content end#}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+            {% else %}
+                <p>Brak planowanych posiedzeń</p>
+            {% endif %}
+
+        </div>
+    </div>
+{% endblock %}
+{#
+{% block additionaljs %}
+    <script type="text/javascript">
+        $(document).ready( function () {
+            $('#idatatable').DataTable();
+        } );
+    </script>
+{% endblock %}#}

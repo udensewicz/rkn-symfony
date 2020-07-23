@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edytuj menu :: Rada Kół Naukowych PW{% endblock %}
+
+{%  block body %}
+    <div class="container-fluid">
+        <div class="btn-group d-flex" role="group" aria-label="...">
+            <a role="button" class="btn btn-outline-primary w-100" href="/article/list">
+                <i class="far fa-newspaper fa-2x" style=" vertical-align: middle;"></i><span class="ml-2"><b>Artykuły</b></span>
+            </a>
+            <a role="button" class="btn btn-outline-primary w-100" href="/pictures/list">
+                <i class="far fa-images fa-2x" style=" vertical-align: middle;"></i><span class="ml-2"><b>Obrazy</b></span>
+            </a>
+            <a role="button" class="btn btn-outline-primary w-100" href="/files/list">
+                <i class="fas fa-file-upload fa-2x" style=" vertical-align: middle;"></i><span class="ml-2"><b>Pliki</b></span>
+            </a>
+            <a role="button" class="btn btn-outline-primary w-100" href="/menu">
+                <i class="fas fa-bars fa-2x" style=" vertical-align: middle;"></i><span class="ml-2"><b>Menu</b></span>
+            </a>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <br><br>
+        <a href="/menu/add" class="btn btn-primary btn-lg">Nowa kategoria menu</a>
+        <br><br>
+        {{ form_start(form) }}
+        <table class="display table table-hover table-bordered">
+            <thead>
+                <tr class="bg-primary">
+                    <th>Nazwa kategorii</th>
+                    <th>Kolejność</th>
+                    <th>Link</th>
+                    <th>Elementy podrzędne</th>
+                    <th>Usuń</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for item in form.items %}
+                <tr>
+                    <td>{{ form_row(item.name) }}</td>
+                    <td>{{ form_row(item.ordering) }}</td>
+                    <td>{{ form_row(item.link) }}</td>
+                    <td>
+                        <div>{{ form_widget(item.hasChildren) }}
+                        {% if items[loop.index-1].hasChildren %}
+                            <a class="btn btn-primary" href="/menu/{{ items[loop.index-1].id }}/items">Zobacz</a>
+                        {% endif %}
+                        </div>
+                    </td>
+                    <td>{{ form_row(item.deleted) }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <div>
+            {{ form_widget(form.save) }}
+        </div>
+        {{ form_end(form) }}
+        <br><br>
+    </div>
+{% endblock %}

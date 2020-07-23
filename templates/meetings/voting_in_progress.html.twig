@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Głosowanie :: Rada Kół Naukowych PW{% endblock %}
+
+{% if votingGroup.maxVotesFor == 1 %}
+    {% set votesForString = '1 głos' %}
+{% elseif votingGroup.maxVotesFor >=2 and votingGroup.maxVotesFor <=4 %}
+    {% set votesForString = votingGroup.maxVotesFor ~ ' głosy' %}
+{% else %}
+    {% set votesForString = votingGroup.maxVotesFor ~ ' głosów' %}
+{% endif %}
+
+{% block body %}
+    <div class="container">
+        <h4>{{ meeting.title }}</h4>
+        <p>Głosowanie w sprawie: {{ votingGroup.subject }}</p>
+        {% if votingGroup.votings|length >1 and not votingGroup.isBestOpiekun %}
+            <div>Pamiętaj, że możesz oddać tylko {{ votesForString }} "za"!</div>
+        {% endif %}
+        <div>
+            {{ form_start(voteForm) }}
+            {% for voting in votingGroup.votings %}
+                {{ form_row(attribute(voteForm, 'voting' ~ voting.id )) }}
+                <br/>
+            {% endfor %}
+            {{ form_end(voteForm) }}
+        </div>
+        <br/>
+        <div>
+            <a href="/meetings/{{ meeting.id }}/votings/" class="btn btn-primary">
+                Powrót do głosowań
+            </a>
+        </div>
+    </div>
+
+{% endblock %}

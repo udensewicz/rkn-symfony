@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Głosowanie na projekty :: Rada Kół Naukowych PW{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h4>{{ meeting.title }}</h4>
+        <p>Głosowanie na projekty zgłoszone do tej puli</p>
+        <div>Głosowanie jeszcze się nie rozpoczęło.</div>
+        {% if 'now'|date('Y-m-d H:i') > meeting.dateStart|date('Y-m-d H:i')
+            and 'now'|date('Y-m-d H:i') < meeting.dateEnd|date('Y-m-d H:i')
+            and (is_granted('ROLE_BM') or is_granted('ROLE_CHAIRMAN'))%}
+            {{ form(startBtn) }}
+        {% endif %}
+    </div>
+
+{% endblock %}

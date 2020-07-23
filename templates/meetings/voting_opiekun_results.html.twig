@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Głosowanie :: Rada Kół Naukowych PW{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h4>{{ meeting.title }}</h4>
+        <p>Głosowanie w sprawie: {{ votingGroup.subject }}</p>
+        <div>Głosowanie juz sie zakończyło.
+            <table class="display table table-bordered">
+                <tbody>
+                <tr>
+                    <td>Uprawnionych do głosowania</td>
+                    <td>{{ attendance|length }}</td>
+                </tr>
+                <tr>
+                    <td>Oddanych głosów</td>
+                    <td>{{ votingGroup.votings[0].votes|length }}</td>
+                </tr>
+                </tbody>
+            </table>
+                <table class="display table table-bordered">
+                    <tbody>
+                    {% for voting in results %}
+                    <tr>
+                        <td>{{ voting.subject }}</td>
+                        <td>{{ voting.score }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <a href="/meetings/{{ meeting.id }}/votings/" class="btn btn-primary">
+                Powrót do głosowań
+            </a>
+        </div>
+    </div>
+
+{% endblock %}

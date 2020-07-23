@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Głosowanie na projekty :: Rada Kół Naukowych PW{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h4>{{ meeting.title }}</h4>
+        <p>Głosowanie na projekty zgłoszone do tej puli</p>
+        <div>Już oddano głos.</div>
+        <table class="display table table-bordered">
+            <tbody>
+            <tr>
+                <td>Uprawnionych do głosowania</td>
+                <td>{{ allowed }}</td>
+            </tr>
+            <tr>
+                <td>Oddanych głosów</td>
+                <td>{{ finished }}</td>
+            </tr>
+            <tr>
+                <td>W trakcie głosowania</td>
+                <td>{{ inprogress }}</td>
+            </tr>
+            <tr>
+                <td>Nie zaczęli</td>
+                <td>{{ notstarted }}</td>
+            </tr>
+            </tbody>
+        </table>
+        {% if is_granted('ROLE_BM') or is_granted('ROLE_CHAIRMAN') %}
+            {{ form(endBtn) }}
+        {% endif %}
+    </div>
+
+{% endblock %}

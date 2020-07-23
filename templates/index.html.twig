@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+{% block title %} Rada Kół Naukowych PW {% endblock %}
+{% block body %}
+    <div class="container-fluid" style="background: url(https://www.eksperci.pw.edu.pl/design/standard/images/pw_outline.jpg) bottom left no-repeat; background-size: 350px">
+        <div class="row justify-content-center">
+            <div class="col col-md-8 col-sm-12 pb-4" >
+                {% if is_granted('ROLE_site_admin') %}
+                    <a href="/article/list/" class="btn btn-primary">Edytuj stronę</a>
+                {% endif %}
+                <p>
+                    {% for article in articles %}
+                        {% if article.articletype == 'index' and article.deleted == FALSE %}
+                            <h3>{{ article.title }}</h3>
+                            <small>{{ article.ModifiedTime|date('Y-m-d H:i') }}</small>
+                            <p style="text-align: justify">{{ article.body|raw }}</p>
+                            <br>
+                        {% endif %}
+                    {% endfor %}
+                </p>
+                <br>
+                {#<button type="button" class="btn btn-primary">Czytaj więcej</button>#}
+                <br>
+                <br>
+                <br>
+            </div><br>
+            {#<div class="col col-md-4 col-sm-12">#}
+                {#<div class="container-fluid">#}
+
+                {#</div>#}
+                {#<div class="container-fluid">#}
+                    {#<br>#}
+                    {#<div class="input-group">#}
+                        {#<input type="text" class="form-control" placeholder="Wyszukaj na stronie">#}
+                        {#<span class="input-group-btn">#}
+                            {#<button class="btn btn-default" type="button"><i class="fas fa-search"></i></button>#}
+                        {#</span>#}
+                    {#</div><br>#}
+                {#</div>#}
+                {#<div class="container-fluid">#}
+                    {#<h5>Kalendarz</h5>#}
+                    {#{% include 'inc/calendar.html.twig' %}#}
+                {#</div><br>#}
+                {#<div class="container-fluid">#}
+                    {#<h5>Najczęściej odwiedzane</h5>#}
+                    {#<button type="button sm" class="btn btn-outline-primary">Primary</button>#}
+                    {#<button type="button" class="btn btn-outline-primary">Primary</button>#}
+                    {#<button type="button" class="btn btn-outline-primary">Primary</button>#}
+                    {#<button type="button" class="btn btn-outline-primary">Primary</button>#}
+                {#</div><br>#}
+            {#</div>#}
+        </div>
+    </div>
+    <div class="row bg-dark text-light">
+        <div class="container-fluid mt-4 mb-4" style="text-align: center">
+            <br>
+            <h4>Ponad 159 Kół Naukowych na PW</h4>
+            <a href="/listaKN"><h5>Wyszukaj Koła dla siebie</h5></a>
+            <br>
+            {{ render(controller(
+                'App\\Controller\\OlimpController::carousel'
+            )) }}
+            {#{% include 'KN lists/KNcarousel.html.twig' %}#}
+            <br><br>
+        </div>
+    </div>
+    <div class="row mt-5 mb-5">
+        <br>
+
+        <div class="col" style="text-align: center">
+            <br>
+            <h5>Obserwuj nas na Facebook:</h5>
+            <script>(function(d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0];
+                    if (d.getElementById(id)) return;
+                    js = d.createElement(s); js.id = id;
+                    js.src = 'https://connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v2.12&appId=1709959529064428&autoLogAppEvents=1';
+                    fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));</script>
+
+            <div class="fb-page" data-href="https://www.facebook.com/RKNPW/" data-tabs="timeline" data-width="500" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/RKNPW/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/RKNPW/">Rada Kół Naukowych pw</a></blockquote></div>
+            <br>
+        </div><br>
+        <div class="col pb-4" style="text-align: center">
+            <br>
+            <h5>Obserwuj nas na Twitter:</h5>
+            <a class="twitter-timeline" data-width="500" data-height="300" data-dnt="true" data-theme="light" href="https://twitter.com/rkn_pw?ref_src=twsrc%5Etfw">Tweets by rkn_pw</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            <br>
+        </div>
+        <br>
+
+    </div>
+
+{% endblock %}

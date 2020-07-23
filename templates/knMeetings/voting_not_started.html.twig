@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Głosowanie :: {{ kn.name }} :: Rada Kół Naukowych PW{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h4>{{ meeting.title }}</h4>
+        <p>Głosowanie w sprawie: {{ votingGroup.subject }}</p>
+        <div>Głosowanie jeszcze się nie rozpoczęło. </div>
+        {% if 'now'|date('Y-m-d H:i') > meeting.dateStart|date('Y-m-d H:i')
+            and 'now'|date('Y-m-d H:i') < meeting.dateEnd|date('Y-m-d H:i')
+            and (is_granted('ROLE_CHAIRMAN_'~kn.olimpId))%}
+            {{ form(startBtn) }}
+            <br/>
+        {% endif %}
+        <div>
+            <a href="/kn/meetings/{{ meeting.id }}/votings" class="btn btn-primary">
+                Powrót do głosowań
+            </a>
+        </div>
+    </div>
+
+{% endblock %}

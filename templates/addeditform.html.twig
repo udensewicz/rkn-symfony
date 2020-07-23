@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title }} :: Rada Kół Naukowych PW{% endblock %}
+
+{% block body %}
+    <div class="row justify-content-center">
+        <div class="col-10">
+            <h4>{{ title }}</h4>
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
+
+
+    <script src="/addons/tinymce/js/tinymce/tinymce.min.js"></script>
+    <script src="/addons/tinymce/js/tinymce/jquery.tinymce.min.js"></script>
+    <script>tinymce.init({
+            selector:'textarea',
+            height: {{ textareaheight|default(400)}},
+            width: '100%',
+            language : 'pl',
+            language_url : '/js/tinyMCE/pl.js',
+            theme: 'modern',
+            plugins: 'print preview code noneditable fullpage searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount imagetools contextmenu colorpicker textpattern help',
+            toolbar1: ' fontselect |  fontsizeselect formatselect | bold italic strikethrough forecolor backcolor | link image | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent code |  removeformat',
+            browser_spellcheck: true,
+            image_advtab: true,
+            force_br_newlines : true,
+            force_p_newlines : false,
+            noneditable_noneditable_class: 'fa',
+            spellchecker_languages: 'English=en,Polish=pl',
+            font_formats: 'Adagio Slab=adagio_slab;WUT Radical=radikal_wutbold;Arial=arial,helvetica,sans-serif;Verdana=verdana;',
+            fontsize_formats: '8pt 10pt 12pt 14pt 18pt 24pt 36pt',
+            templates: [
+                { title: 'Test template 1', content: 'Test 1' },
+                { title: 'Test template 2', content: 'Test 2' }
+            ],
+            content_css: [
+                '/stylesheets/RKN1PW.css',
+                '/stylesheets/fonts.css',
+                'https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'
+            ],
+            extended_valid_elements: 'span[*]',
+            noneditable_noneditable_class: 'fa',
+            textcolor_map: [
+                "fed542", "PW Słoneczny",
+                "3c3c4c", "PW Grafitowy",
+                "ea7c5a", "PW Morelowy",
+                "6aba9c", "PW Miętowy",
+                "7896cf", "PW Szafirowy",
+                "965f77", "PW Śliwkowy",
+                "b4a0aa", "PW Wrzosowy",
+                "645a5a", "PW Mokka",
+                "000000", "Black",
+                "993300", "Burnt orange",
+                "333300", "Dark olive",
+                "003300", "Dark green",
+                "003366", "Dark azure",
+                "000080", "Navy Blue",
+                "333399", "Indigo",
+                "333333", "Very dark gray",
+                "800000", "Maroon",
+                "FF6600", "Orange",
+                "808000", "Olive",
+                "008000", "Green",
+                "008080", "Teal",
+                "0000FF", "Blue",
+                "666699", "Grayish blue",
+                "808080", "Gray",
+                "FF0000", "Red",
+                "FF9900", "Amber",
+                "99CC00", "Yellow green",
+                "339966", "Sea green",
+                "33CCCC", "Turquoise",
+                "3366FF", "Royal blue",
+                "800080", "Purple",
+                "999999", "Medium gray",
+                "FF00FF", "Magenta",
+                "FFCC00", "Gold",
+                "FFFF00", "Yellow",
+                "00FF00", "Lime",
+                "00FFFF", "Aqua",
+                "00CCFF", "Sky blue",
+                "993366", "Red violet",
+                "FFFFFF", "White",
+                "FF99CC", "Pink",
+                "FFCC99", "Peach",
+                "FFFF99", "Light yellow",
+                "CCFFCC", "Pale green",
+                "CCFFFF", "Pale cyan",
+                "99CCFF", "Light sky blue",
+                "CC99FF", "Plum"
+            ]
+        });</script>
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Obecność na posiedzeniu :: Rada Kół Naukowych PW{% endblock %}
+
+{% block body %}
+    <div class="container">
+    <h4>{{ meeting.title }}</h4>
+    <p>Obecność członków Rady Kół Naukowych PW na posiedzeniu</p>
+    {% if 'now'|date('Y-m-d H:i') > meeting.dateStart|date('Y-m-d H:i')
+        and 'now'|date('Y-m-d H:i') < meeting.dateEnd|date('Y-m-d H:i')
+        and is_granted('ROLE_site_admin')%}
+        {{ form_start(form) }}
+    {% endif %}
+    {% if delegaci %}
+        <br>
+        <table id="idatatable" datatable="" width="100%" class="display table table-hover table-bordered">
+            <thead>
+            <tr class="bg-primary">
+                <th>Lp.</th>
+                <th>Imię</th>
+                <th>Nazwisko</th>
+                <th>Jednostka delegująca</th>
+                <th>Obecność</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for delegat in delegaci %}
+                <tr scope="row">
+                    <td>{{ loop.index }}</td>
+                    <td>{{ delegat.name }}</td>
+                    <td>{{ delegat.surname }}</td>
+                    <td>{% if delegat.kn == null %}
+                            Zarząd RKN
+                        {% else %}
+                            {{ delegat.kn }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if 'now'|date('Y-m-d H:i') > meeting.dateStart|date('Y-m-d H:i')
+                            and 'now'|date('Y-m-d H:i') < meeting.dateEnd|date('Y-m-d H:i')
+                            and is_granted('ROLE_site_admin')%}
+                            {{ form_row(attribute(form, 'present' ~ delegat.rvid )) }}
+                        {% elseif delegat.present %}
+                        Tak
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% if 'now'|date('Y-m-d H:i') > meeting.dateStart|date('Y-m-d H:i')
+            and 'now'|date('Y-m-d H:i') < meeting.dateEnd|date('Y-m-d H:i')
+            and is_granted('ROLE_site_admin')%}
+            {{ form_row(form.submit) }}
+            {{ form_end(form) }}
+        {% endif %}
+    {% else %}
+        <p>Brak delegatów</p>
+    {% endif %}
+    </div>
+{% endblock %}
+
+{#
+{% block additionaljs %}
+    <script type="text/javascript">
+        $(document).ready( function () {
+            $('#idatatable').DataTable();
+        } );
+    </script>
+{% endblock %}#}

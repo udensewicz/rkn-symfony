@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Głosowania :: Rada Kół Naukowych PW{% endblock %}
+
+{% block body %}
+    <div class="container">
+    <h4>{{ meeting.title }}</h4>
+    <p>Głosowania</p>
+    {% if is_granted('ROLE_site_admin') %}
+        <a href="/meetings/{{ meeting.id }}/votings/new/" class="btn btn-primary">Dodaj głosowanie</a></br>
+    {% endif %}
+    {% if votingGroups %}
+        <br>
+        <table width="100%" class="display table table-hover table-bordered">
+            <thead>
+            <tr  class="bg-primary">
+                <th>Lp.</th>
+                <th>Temat głosowania</th>
+                {% if is_granted('ROLE_site_admin') %}
+                    <th>Edytuj</th>
+                {% endif %}
+            </tr>
+            </thead>
+            <tbody>
+            {% for votingGroup in votingGroups %}
+                <tr scope="row">
+                    <td>{{ loop.index }}</td>
+                    <td><a href="/meetings/votings/{{ votingGroup.id }}/">
+                            {{ votingGroup.subject }}
+                    </a></td>
+                    {% if is_granted('ROLE_site_admin') %}
+                        <td><a href="/meetings/votings/{{ votingGroup.id }}/edit" class="btn btn-primary">
+                            Edytuj głosowanie
+                        </a></td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Brak głosowań</p>
+    {% endif %}
+        <div>
+            <a href="/meetings/all" class="btn btn-primary">
+                Powrót do posiedzeń
+            </a>
+        </div>
+    </div>
+{% endblock %}

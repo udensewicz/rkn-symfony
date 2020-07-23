@@ -1,0 +1,165 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Zarząd :: Rada Kół Naukowych PW{% endblock %}
+
+{% block body %}
+    <style>
+        .content{padding-top:10px; padding-bottom:80px;}
+        .mb40{margin-bottom:40px;}
+        .team-block { margin-bottom: 20px; }
+        .team-content { position: absolute; background-color: rgba(60, 60, 76, 0.8); bottom: 0; left: 0; right: 0; display: inline-block; width: 300px; color: #a1ee33; padding: 20px; }
+        .team-img { position: relative; }
+        .team-img img { width: 100%; max-width: 300px; height: inherit; max-height: 400px}
+        .team-title { }
+        .team-meta { color: #7896cf; font-weight: 400; font-size: 16px; }
+        .overlay { border-radius: 0px; position: absolute; top: 0; bottom: 0; left: 0; right: 0; height: inherit; width: 300px; opacity: 0; transition: 1s ease; background-color: #3c3c4c; }
+        .team-img:hover .overlay { opacity: .8; }
+        .team-img:hover .team-content { opacity: 0; }
+        .text { color: #7896cf; position: absolute; top: 30%; left: 30%; transform: translate(-26%, -26%); -ms-transform: translate(-26%, -26%); right: 0; font-weight: 400; font-size: 16px; }
+    </style>
+    <div class="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb40 text-center">
+
+                <h1>Zarząd Rady Kół Naukowych</h1>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
+                <!-- team-img -->
+                <div class="team-block">
+                    <div class="team-img">
+                        {% if chairman !='NULL' %}
+                            {% if chairman.photo !='NULL' %}
+                                <img src="{{ chairman.photo }}">
+                            {% else %}
+                                <img src="https://easetemplate.com/free-website-templates/motion/images/team_member_1.jpg" alt="">
+                            {% endif %}
+                            <div class="team-content">
+                                <h4 class="text-white mb0" style="font-family: 'radikal_wutbold'">{{ chairman.name }} {{ chairman.surname }}</h4>
+                                <p class="team-meta">
+                                    {% if chairman.gender == 'K' %}
+                                        <b>Przewodnicząca</b>
+                                    {% else %}
+                                        <b>Przewodniczący</b>
+                                    {% endif %}
+                                </p>
+                            </div>
+                            <div class="overlay">
+                                <div class="text">
+                                    <h4 class="mb0 text-white" style="font-family: 'radikal_wutbold'">{{ chairman.name }} {{ chairman.surname }}</h4>
+                                    <p class="mb30 team-meta">
+                                        {% if chairman.gender == 'K' %}
+                                            <b>Przewodnicząca</b>
+                                        {% else %}
+                                            <b>Przewodniczący</b>
+                                        {% endif %}
+                                    </p>
+                                    <p>
+                                        {% if chairman.mail !='NULL' %}
+                                           {{ chairman.mail }}
+                                        {% endif %}
+                                        {% if chairman.phone != 'NULL' %}
+                                            {{ chairman.phone }}
+                                        {% endif %}
+                                    </p>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
+                <!-- team-img -->
+                <div class="team-block">
+                    <div class="team-img">
+                        {% if pnpn !='NULL' %}
+                            {% if pnpn.photo !='NULL' %}
+                                <img src="{{ pnpn.photo }}">
+                            {% else %}
+                                <img src="https://easetemplate.com/free-website-templates/motion/images/team_member_1.jpg" alt="">
+                            {% endif %}
+                            <div class="team-content">
+                                <h4 class="text-white mb0" style="font-family: 'radikal_wutbold'">{{ pnpn.name }} {{ pnpn.surname }}</h4>
+                                <p class="team-meta">
+                                    {% if pnpn.gender == 'K' %}
+                                        <b>Wiceprzewodnicząca</b><br>
+                                        <small>ds. Puli na Projekty Naukowe</small>
+                                    {% else %}
+                                        <b>Wiceprzewodniczący</b><br>
+                                        <small>ds. Puli na Projekty Naukowe</small>
+                                    {% endif %}
+                                </p>
+                            </div>
+                            <div class="overlay">
+                                <div class="text">
+                                    <h4 class="mb0 text-white" style="font-family: 'radikal_wutbold'">{{ pnpn.name }} {{ pnpn.surname }}</h4>
+                                    <p class="mb30 team-meta">
+                                        {% if pnpn.gender == 'K' %}
+                                            <b>Wiceprzewodnicząca</b><br>
+                                        {% else %}
+                                            <b>Wiceprzewodniczący</b><br>
+                                        {% endif %}
+                                            <small>ds. Puli na Projekty Naukowe</small>
+                                    </p>
+                                    <p>
+                                        {% if pnpn.mail !='NULL' %}
+                                           {{ pnpn.mail }}
+                                        {% endif %}
+                                    </p>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
+                <!-- team-img -->
+                <div class="team-block">
+                    <div class="team-img">
+                        {% if ogolny !='NULL' %}
+                            {% if ogolny.photo !='NULL' %}
+                                <img src="{{ ogolny.photo }}">
+                            {% else %}
+                                <img src="https://easetemplate.com/free-website-templates/motion/images/team_member_1.jpg" alt="">
+                            {% endif %}
+                            <div class="team-content">
+                                <h4 class="text-white mb0" style="font-family: 'radikal_wutbold'">{{ ogolny.name }} {{ ogolny.surname }}</h4>
+                                <p class="team-meta">
+                                    {% if ogolny.gender == 'K' %}
+                                        <b>Wiceprzewodnicząca</b><br>
+                                    {% else %}
+                                        <b>Wiceprzewodniczący</b><br>
+                                    {% endif %}
+                                        <small>ds. Ogólnych</small>
+                                </p>
+                            </div>
+                            <div class="overlay">
+                                <div class="text">
+                                    <h4 class="mb0 text-white" style="font-family: 'radikal_wutbold'">{{ ogolny.name }} {{ ogolny.surname }}</h4>
+                                    <p class="mb30 team-meta">
+                                        {% if ogolny.gender == 'K' %}
+                                            <b>Wiceprzewodnicząca</b><br>
+                                            <small>ds. Ogólnych</small>
+                                        {% else %}
+                                            <b>Wiceprzewodniczący</b><br>
+                                            <small>ds. Ogólnych</small>
+                                        {% endif %}
+                                    </p>
+                                    <p>
+                                        {% if ogolny.mail !='NULL' %}
+                                            {{ ogolny.mail }}
+                                        {% endif %}
+                                    </p>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}

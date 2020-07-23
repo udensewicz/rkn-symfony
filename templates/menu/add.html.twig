@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edytuj menu :: Rada Kół Naukowych PW{% endblock %}
+
+{%  block body %}
+    <div class="container">
+        {% if category %}
+            <h3>Dodaj nowe pole kategorii {{ category }}</h3>
+        {% else %}
+            <h3>Dodaj nowe pole menu głównego</h3>
+        {% endif %}
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

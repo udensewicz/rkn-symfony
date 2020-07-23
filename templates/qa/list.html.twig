@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pytania i odpowiedzi :: Rada Kół Naukowych PW{% endblock %}
+
+{% block body %}
+    <div class="container">
+        {% if is_granted('ROLE_site_admin') %}
+            <a href="/qa/items" class="btn btn-primary btn-lg">Edytuj pytania</a>
+            <br/><br/>
+        {% endif %}
+
+        {% for category in categories %}
+            <h3>{{ category.name }}</h3>
+            {% for item in category.questions %}
+                <a href="/qa/{{ item.id }}"><h5>{{ item.question }}</h5></a>
+            {% else %}
+                <p>Brak pytań w tej kategorii</p>
+            {% endfor %}
+        {% else %}
+            <p>Nie utworzono żadnych treści</p>
+        {% endfor %}
+    </div>
+{% endblock %}

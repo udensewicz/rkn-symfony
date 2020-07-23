@@ -1,0 +1,71 @@
+{% block body %}
+    <style>
+        .blog .carousel-indicators {
+            left: 0;
+            top: auto;
+            bottom: -40px;
+
+        }
+
+        /* The colour of the indicators */
+        .blog .carousel-indicators li {
+            background: #a3a3a3;
+            border-radius: 50%;
+            width: 8px;
+            height: 8px;
+        }
+
+        .blog .carousel-indicators .active {
+            background: #707070;
+        }
+    </style>
+    <script>
+        // optional
+        $('#blogCarousel').carousel({
+            interval: 1000
+        });
+    </script>
+    <div class="container">
+        <div class="row blog">
+            <div class="col-md-12">
+                <div id="blogCarousel" class="carousel slide" data-ride="carousel">
+
+                    <ol class="carousel-indicators" style="padding: 1em;">
+                        {% for i in range(0, slides) %}
+                        <li data-target="#blogCarousel" data-slide-to="{{ i }}" {% if loop.index0 == 0 %} class="active" {% endif %}></li>
+                        {% endfor %}
+                    </ol>
+
+                    <!-- Carousel items -->
+                    <div class="carousel-inner">
+
+                        {% for slide in slides %}
+                        <div {% if loop.index0 == 0 %} class="carousel-item active" {% else %} class="carousel-item" {% endif %}>
+                            <div class="row">
+                                {% for org in slide %}
+                                <div class="col-md-3 " style="height: 270px; display:flex; justify-content: center; align-items: center;">
+                                    <a href="{{ org.contact }}">
+                                        <img src="https://mainframe.sspw.pl/?site=8011&org_id={{ org.id }}" alt="{{ org.nazwa }}"
+                                             style="max-width:100%;">
+                                    </a>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <!--.row-->
+                        </div>
+                        <!--.item-->
+                            <!--.row-->
+                        {% endfor %}
+                        </div>
+                        <!--.item-->
+
+                    </div>
+                    <!--.carousel-inner-->
+                </div>
+                <!--.Carousel-->
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
